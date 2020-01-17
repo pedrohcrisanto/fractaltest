@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   def show
     render json: @post
   end
-
+  
   # POST /posts
   def create
     @post = Post.new(post_params)

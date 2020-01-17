@@ -51,6 +51,14 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.3)
+    elasticsearch (7.4.0)
+      elasticsearch-api (= 7.4.0)
+      elasticsearch-transport (= 7.4.0)
+    elasticsearch-api (7.4.0)
+      multi_json
+    elasticsearch-transport (7.4.0)
+      faraday
+      multi_json
     erubis (2.7.0)
     factory_bot (5.1.1)
       activesupport (>= 4.2.0)
@@ -59,9 +67,12 @@ GEM
       railties (>= 4.2.0)
     faker (2.10.1)
       i18n (>= 1.6, < 2)
+    faraday (1.0.0)
+      multipart-post (>= 1.2, < 3)
     ffi (1.12.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    hashie (4.0.0)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     listen (3.0.8)
@@ -76,6 +87,8 @@ GEM
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.0)
+    multi_json (1.14.1)
+    multipart-post (2.1.1)
     nio4r (2.5.2)
     nokogiri (1.10.7)
       mini_portile2 (~> 2.4.0)
@@ -132,6 +145,10 @@ GEM
       rspec-mocks (~> 3.9.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.2)
+    searchkick (4.2.0)
+      activemodel (>= 5)
+      elasticsearch (>= 6)
+      hashie
     simple_token_authentication (1.17.0)
       actionmailer (>= 3.2.6, < 7)
       actionpack (>= 3.2.6, < 7)
@@ -170,6 +187,7 @@ DEPENDENCIES
   puma (~> 3.0)
   rails (~> 5.0.1)
   rspec-rails (~> 3.5)
+  searchkick
   simple_token_authentication (~> 1.0)
   spring
   spring-watcher-listen (~> 2.0.0)

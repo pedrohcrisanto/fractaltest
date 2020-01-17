@@ -1,5 +1,6 @@
+
 puts "Criando User..."
-User.create!(email: "user5@fractal.com", password: "userfractal", password_confirmation: "userfractal")
+User.create!(email: "user7@fractal.com", password: "userfractal", password_confirmation: "userfractal")
 
 puts "Criando Posts..."
 10.times do |i|
@@ -30,8 +31,17 @@ posts = Post.all
 posts.each do |post|
     post.update(category_id: Category.all.sample.id)
 end
+
 puts "Adicionando Posts em Categorias..."
 categories = Category.all
 categories.each do |category|
     category.update(post_id: Post.all.sample.id)
 end
+
+puts "Adicionando Comentarios em Posts..."
+comments = Comment.all
+comments.each do |comment|
+    comment.update(post_id: Post.all.sample.id)
+end
+
+

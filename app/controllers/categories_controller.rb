@@ -13,6 +13,13 @@ class CategoriesController < ApplicationController
     render json: @category
   end
 
+  def search
+    Category.reindex
+    @data = Category.search(params[:query])
+    
+    render json: @data 
+end
+  
   # POST /categories
   def create
     @category = Category.new(category_params)
