@@ -1,47 +1,45 @@
 
-puts "Criando User..."
-User.create!(email: "user7@fractal.com", password: "userfractal", password_confirmation: "userfractal")
-
-puts "Criando Posts..."
+puts "Criando Filmes..."
 10.times do |i|
-    Post.create!(
-      user: User.all.sample,
-      text:Faker::Lorem.sentence(word_count: 3, supplemental: true, random_words_to_add: 4),
+    Movie.create!(
+      title: Faker::Movies::HarryPotter.book,
+      year: Faker::Date.between(from: 2.days.ago, to: Date.today)
       )
     end
 
-puts "Criando Categorias..."
+puts "Criando Atores..."
 10.times do |i|
-    Category.create!(
-      name: Faker::Esport.game
-      )
-    end
-puts "Criando Comentarios..."
-10.times do |i|
-    Comment.create!(
-      user: User.all.sample,
-      text: Faker::Lorem.sentence(word_count: 3, supplemental: true, random_words_to_add: 4),
-      date: Faker::Date.between(from: 20.days.ago, to: Date.today)
+    Actor.create!(
+      name: Faker::Name.name
       )
     end
 
-puts "Adicinando Categorias em Posts..."
-posts = Post.all
+puts "Criando Atuações..."
+  10.times do |i|
+        Act.create!(
+          movie: Movie.all.sample,
+          actor: Actor.all.sample
+          )
+        end    
 
-posts.each do |post|
-    post.update(category_id: Category.all.sample.id)
+puts "Relacionando Tabelas..."
+
+acts = Act.all
+
+Movie.all.each do |movie|
+  acts_movie = acts.find_by(movie_id: movie.id)
+  if acts_movie != nil
+    movie.acts << acts_movie
+    movie.save!
+  end
 end
 
-puts "Adicionando Posts em Categorias..."
-categories = Category.all
-categories.each do |category|
-    category.update(post_id: Post.all.sample.id)
-end
-
-puts "Adicionando Comentarios em Posts..."
-comments = Comment.all
-comments.each do |comment|
-    comment.update(post_id: Post.all.sample.id)
+Actor.all.each do |actor|
+  acts_actor = acts.find_by(actor_id: actor.id)
+  if acts_actor != nil
+    actor.acts << acts_actor
+    actor.save!
+  end
 end
 
 

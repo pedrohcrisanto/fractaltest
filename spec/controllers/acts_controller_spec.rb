@@ -23,10 +23,10 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe CategoriesController, type: :controller do
+RSpec.describe ActsController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
-  # Category. As you add validations to Category, be sure to
+  # Act. As you add validations to Act, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -38,12 +38,12 @@ RSpec.describe CategoriesController, type: :controller do
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # CategoriesController. Be sure to keep this updated too.
+  # ActsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET #index" do
     it "returns a success response" do
-      category = Category.create! valid_attributes
+      act = Act.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_successful
     end
@@ -51,33 +51,33 @@ RSpec.describe CategoriesController, type: :controller do
 
   describe "GET #show" do
     it "returns a success response" do
-      category = Category.create! valid_attributes
-      get :show, params: {id: category.to_param}, session: valid_session
+      act = Act.create! valid_attributes
+      get :show, params: {id: act.to_param}, session: valid_session
       expect(response).to be_successful
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Category" do
+      it "creates a new Act" do
         expect {
-          post :create, params: {category: valid_attributes}, session: valid_session
-        }.to change(Category, :count).by(1)
+          post :create, params: {act: valid_attributes}, session: valid_session
+        }.to change(Act, :count).by(1)
       end
 
-      it "renders a JSON response with the new category" do
+      it "renders a JSON response with the new act" do
 
-        post :create, params: {category: valid_attributes}, session: valid_session
+        post :create, params: {act: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json')
-        expect(response.location).to eq(category_url(Category.last))
+        expect(response.location).to eq(act_url(Act.last))
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the new category" do
+      it "renders a JSON response with errors for the new act" do
 
-        post :create, params: {category: invalid_attributes}, session: valid_session
+        post :create, params: {act: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -90,27 +90,27 @@ RSpec.describe CategoriesController, type: :controller do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested category" do
-        category = Category.create! valid_attributes
-        put :update, params: {id: category.to_param, category: new_attributes}, session: valid_session
-        category.reload
+      it "updates the requested act" do
+        act = Act.create! valid_attributes
+        put :update, params: {id: act.to_param, act: new_attributes}, session: valid_session
+        act.reload
         skip("Add assertions for updated state")
       end
 
-      it "renders a JSON response with the category" do
-        category = Category.create! valid_attributes
+      it "renders a JSON response with the act" do
+        act = Act.create! valid_attributes
 
-        put :update, params: {id: category.to_param, category: valid_attributes}, session: valid_session
+        put :update, params: {id: act.to_param, act: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to eq('application/json')
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the category" do
-        category = Category.create! valid_attributes
+      it "renders a JSON response with errors for the act" do
+        act = Act.create! valid_attributes
 
-        put :update, params: {id: category.to_param, category: invalid_attributes}, session: valid_session
+        put :update, params: {id: act.to_param, act: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -118,11 +118,11 @@ RSpec.describe CategoriesController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    it "destroys the requested category" do
-      category = Category.create! valid_attributes
+    it "destroys the requested act" do
+      act = Act.create! valid_attributes
       expect {
-        delete :destroy, params: {id: category.to_param}, session: valid_session
-      }.to change(Category, :count).by(-1)
+        delete :destroy, params: {id: act.to_param}, session: valid_session
+      }.to change(Act, :count).by(-1)
     end
   end
 

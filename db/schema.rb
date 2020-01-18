@@ -10,38 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200117162619) do
+ActiveRecord::Schema.define(version: 20200118152739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "categories", force: :cascade do |t|
+  create_table "actors", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "post_id"
-    t.index ["post_id"], name: "index_categories_on_post_id", using: :btree
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.integer  "user_id"
-    t.text     "text"
-    t.date     "date"
+  create_table "acts", force: :cascade do |t|
+    t.integer  "movie_id"
+    t.integer  "actor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "post_id"
-    t.index ["post_id"], name: "index_comments_on_post_id", using: :btree
-    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
+    t.index ["actor_id"], name: "index_acts_on_actor_id", using: :btree
+    t.index ["movie_id"], name: "index_acts_on_movie_id", using: :btree
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.integer  "user_id"
-    t.text     "text"
-    t.integer  "category_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["category_id"], name: "index_posts_on_category_id", using: :btree
-    t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
+  create_table "categories_posts", force: :cascade do |t|
+    t.integer "category_id"
+    t.integer "post_id"
+    t.index ["category_id"], name: "index_categories_posts_on_category_id", using: :btree
+    t.index ["post_id"], name: "index_categories_posts_on_post_id", using: :btree
+  end
+
+  create_table "movies", force: :cascade do |t|
+    t.string   "title"
+    t.date     "year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -58,9 +58,6 @@ ActiveRecord::Schema.define(version: 20200117162619) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "categories", "posts"
-  add_foreign_key "comments", "posts"
-  add_foreign_key "comments", "users"
-  add_foreign_key "posts", "categories"
-  add_foreign_key "posts", "users"
+  add_foreign_key "acts", "actors"
+  add_foreign_key "acts", "movies"
 end
