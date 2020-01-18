@@ -1,13 +1,32 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :update, :destroy]
-
+  before_action :reindex_movie, only: [:search]
   # GET /movies
   def index
     @movies = Movie.all
 
     render json: @movies
   end
+  
+  def search
+    data = if params[:query].blank?
+      []
+    else
+      Movie.search(params[:query]).map do |movie|
+        {
+          id: movie.id,
+          title: movie.title,
+        }
+      end
+    end
 
+    render json: { data: data }
+  end
+
+  def reindex_movie
+    Movie.reindex
+  end
+  
   # GET /movies/1
   def show
     render json: @movie
