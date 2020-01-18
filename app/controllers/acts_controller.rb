@@ -3,14 +3,14 @@ class ActsController < ApplicationController
 
   # GET /acts
   def index
-    @acts = Act.all
+    @acts = Act.all.order(:id).page(params[:page].try(:[], :number))
 
-    render json: @acts
+    render json: @acts, include: [:movie, :actor]
   end
 
   # GET /acts/1
   def show
-    render json: @act
+    render json: @act, include: [:movie, :actor]
   end
 
   # POST /acts
@@ -46,6 +46,7 @@ class ActsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def act_params
-      params.require(:act).permit(:movie_id, :actor_id, :user_id)
+      # params.require(:act).permit(:movie_id, :actor_id, :user_id)
+      ActiveModelSerializers::Deserialization.jsonapi_parse(params)
     end
 end

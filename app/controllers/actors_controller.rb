@@ -3,7 +3,7 @@ class ActorsController < ApplicationController
 
   # GET /actors
   def index
-    @actors = Actor.all
+    @actors = Actor.all.order(:id).page(params[:page].try(:[], :number))
 
     render json: @actors
   end
@@ -46,6 +46,7 @@ class ActorsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def actor_params
-      params.require(:actor).permit(:name, :user_id)
+      # params.require(:actor).permit(:name, :user_id)
+      ActiveModelSerializers::Deserialization.jsonapi_parse(params)
     end
 end

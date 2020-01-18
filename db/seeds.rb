@@ -1,6 +1,6 @@
-user = User.create! :email => "user12@gmail.com", :password => "senha123", :password_confirmation => "senha123"
+user = User.create! :email => "user123@gmail.com", :password => "senha123", :password_confirmation => "senha123"
 puts "Criando Filmes..."
-10.times do |i|
+5.times do |i|
     Movie.create!(
       title: Faker::Movies::HarryPotter.book,
       year: Faker::Date.between(from: 2.days.ago, to: Date.today),
@@ -9,7 +9,7 @@ puts "Criando Filmes..."
     end
 
 puts "Criando Atores..."
-10.times do |i|
+5.times do |i|
     Actor.create!(
       name: Faker::Name.name,
       user: User.all.sample

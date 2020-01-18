@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
   before_action :reindex_movie, only: [:search]
   # GET /movies
   def index
-    @movies = Movie.all
+    @movies = Movie.all.order(:id).page(params[:page].try(:[], :number))
 
     render json: @movies
   end
@@ -12,9 +12,8 @@ class MoviesController < ApplicationController
     data = if params[:query].blank?
       []
     else
-      Movie.search(params[:query]).map do |movie|
+      Movie.search(params[:query]).JSON.parse.map do |movie|
         {
-          id: movie.id,
           title: movie.title,
         }
       end
@@ -65,6 +64,7 @@ class MoviesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def movie_params
-      params.require(:movie).permit(:title, :year, :user_id)
+      # params.require(:movie).permit(:title, :year, :user_id)
+      ActiveModelSerializers::Deserialization.jsonapi_parse(params)
     end
 end

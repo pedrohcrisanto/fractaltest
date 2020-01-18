@@ -21,6 +21,9 @@ gem 'puma', '~> 3.0'
 gem 'devise'
 gem 'simple_token_authentication', '~> 1.0'
 gem 'searchkick'
+gem 'active_model_serializers', '~> 0.10.0'
+gem 'kaminari'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
