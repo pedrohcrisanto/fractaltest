@@ -46,6 +46,6 @@ class ActorsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def actor_params
-      params.require(:actor).permit(:name)
+      params.require(:actor).permit(:name, :user_id)
     end
 end

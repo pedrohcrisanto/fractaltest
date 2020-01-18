@@ -1,3 +1,5 @@
 class Movie < ApplicationRecord
-    has_many :acts
+  belongs_to :user
+  has_many :acts
+  has_many :theaters
 end

@@ -1,3 +1,4 @@
 class Actor < ApplicationRecord
-    has_many :acts
+  belongs_to :user
+  has_many :acts
 end

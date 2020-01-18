@@ -46,6 +46,6 @@ class ActsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def act_params
-      params.require(:act).permit(:movie_id, :actor_id)
+      params.require(:act).permit(:movie_id, :actor_id, :user_id)
     end
 end
