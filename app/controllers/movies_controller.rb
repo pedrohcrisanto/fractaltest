@@ -12,7 +12,7 @@ class MoviesController < ApplicationController
     data = if params[:query].blank?
       []
     else
-      Movie.search(params[:query]).JSON.parse.map do |movie|
+      Movie.search(params[:query]).map do |movie|
         {
           title: movie.title,
         }

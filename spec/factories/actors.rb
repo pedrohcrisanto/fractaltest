@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :actor do
-    name { "MyString" }
-    user { nil }
+    name { Faker::Name.name }
+    user { User.all.sample }
   end
 end
