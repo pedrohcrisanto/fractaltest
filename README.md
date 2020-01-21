@@ -23,7 +23,8 @@ Rode a aplicação em um terminal
 $ sudo docker-compose up
 ```
 
-Popule o banco de dados(<strong>Lembre-se de deixar um terminal com o servidor local rodando</strong>)
+Popule o banco de dados
+<strong>Obs.:</strong>Lembre-se de deixar um servidor local rodando!
 ```sh
 $ sudo docker-compose run --rm api bundle exec rails db:seed
 ```
