@@ -36,8 +36,9 @@ $ sudo docker-compose run --rm api bundle exec rspec
 ```
 ## Documentação
 
-Rotas de CRUD padrão Scaffold com os objetos => Movie, Actor e Act.
-Para realizar busca utilize a rota /search com o parametro query. exemplo => localhost:3000/search?query=harry
+Rotas de CRUD padrão Scaffold com os objetos => <strong>Movie, Actor e Act.</strong>
+<br>
+Para realizar busca utilize a rota <strong>/search</strong> com o parametro query. Ex.: => `localhost:3000/search?query=harry`
 
 
 
