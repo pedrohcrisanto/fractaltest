@@ -1,24 +1,43 @@
-# README
+# Fractal Test - Implementação
+## Configuração
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Clone o projeto
 
-Things you may want to cover:
+```sh
+$ git clone https://github.com/pedrohcrisanto/fractaltest.git
+```
 
-* Ruby version
+Instale as dependências
+```sh
+$ cd /fractaltest/
+$ sudo docker-compose run --rm api bundle install
+```
 
-* System dependencies
+Crie o banco, migre as tabelas
+```sh
+$ sudo docker-compose run --rm api bundle exec rails db:create db:migrate 
+```
 
-* Configuration
+Rode a aplicação em um terminal
+```sh
+$ sudo docker-compose up
+```
 
-* Database creation
+Popule o banco de dados(Lembre de dexiar um terminal rodando com o servidor)
+```sh
+$ sudo docker-compose run --rm api bundle exec rails db:seed
+```
 
-* Database initialization
+Abra o seu navegador(de preferência Chrome ou Firefox) e navegue para `localhost:3000`
 
-* How to run the test suite
+Para rodar os Testes
+```sh
+$ sudo docker-compose run --rm api bundle exec rspec
+```
+## Documentação
 
-* Services (job queues, cache servers, search engines, etc.)
+Rotas de CRUD padrão Scaffold com os objetos => Movie, Actor e Act.
+Para realizar busca utilize a rota /search com o parametro query. exemplo => localhost:3000/search?query=harry
 
-* Deployment instructions
 
-* ...
+
