@@ -23,7 +23,8 @@ gem 'simple_token_authentication', '~> 1.0'
 gem 'searchkick'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'kaminari'
-
+gem 'rswag'
+gem 'faker'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -35,7 +36,6 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_bot_rails'
-  gem 'faker'
 end
 
 group :development do
